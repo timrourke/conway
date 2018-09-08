@@ -2,6 +2,8 @@
 
 An implementation of Conway's Game of Life in PHP.
 
+Requires PHP 7.1+.
+
 ___
 
 ## Running the game
