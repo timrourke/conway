@@ -16,10 +16,10 @@ class RunGameCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('conway:run')
+            ->setName('run')
             ->setDescription("Run Conway's Game of Life")
             ->setHelp(<<<EOT
-The command `conway:run` will create a new instance of Conway's Game of Life.
+Runs a new instance of Conway's Game of Life.
 Output will be printed to stdout.
 EOT
             )
@@ -28,14 +28,14 @@ EOT
                 null,
                 InputOption::VALUE_REQUIRED,
                 'How many columns wide the game should be',
-                null
+                90
             )
             ->addOption(
                 'rows',
                 null,
                 InputOption::VALUE_REQUIRED,
                 'How many rows tall the game should be',
-                null
+                40
             )
             ->addOption(
                 'tick-length',
