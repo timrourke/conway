@@ -6,6 +6,9 @@ namespace Conway;
 
 class Game
 {
+    public const LIVE_CHAR = "█";
+    public const DEAD_CHAR = " ";
+
     /**
      * @var \Conway\Board
      */
@@ -27,9 +30,9 @@ class Game
         $this->board = $this->gameBoard->getBoard();
     }
 
-    public function tick(): void
+    public function tick(): string
     {
-        $this->displayCurrentState();
+        $output = $this->displayCurrentState();
 
         for ($row = 0; $row < count($this->board); $row++) {
             for ($column = 0; $column < count($this->board[$row]); $column++) {
@@ -42,6 +45,8 @@ class Game
                 $this->calculateStateForNextTick($row, $column);
             }
         }
+
+        return $output;
     }
 
     private function calculateStateForNextTick(int $row, int $column): void
@@ -94,7 +99,7 @@ class Game
         return count($liveNeighbors);
     }
 
-    private function displayCurrentState(): void
+    private function displayCurrentState(): string
     {
         $this->outputBuffer = "";
 
@@ -109,15 +114,15 @@ class Game
             $this->outputBuffer .= sprintf("%s\n", implode("", $line));
         }
 
-        echo $this->outputBuffer;
+        return $this->outputBuffer;
     }
 
     private function getStateCharacter(bool $state): string
     {
         if ($state) {
-            return "░";
+            return self::LIVE_CHAR;
         }
 
-        return "█";
+        return self::DEAD_CHAR;
     }
 }

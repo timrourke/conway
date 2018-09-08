@@ -17,13 +17,11 @@ class GameTest extends TestCase
 
         $game = new Game($board);
 
-        ob_start();
-        $game->tick();
-        $output = ob_get_clean();
+        $output = $game->tick();
 
         $this->assertNotEmpty($output);
 
-        $this->assertRegExp("/^([░█]{3}\n){3}$/u", $output);
+        $this->assertRegExp("/^([ █]{3}\n){3}$/u", $output);
     }
 
     /**
@@ -31,7 +29,8 @@ class GameTest extends TestCase
      */
     public function shouldRenderCorrectState()
     {
-        $expected = "░█░\n█░█\n░░█\n";
+        //$expected = "░█░\n█░█\n░░█\n";
+        $expected = "█ █\n █ \n██ \n";
 
         /**
          * @var \PHPUnit\Framework\MockObject\MockObject|Board $board
@@ -46,9 +45,7 @@ class GameTest extends TestCase
 
         $game = new Game($board);
 
-        ob_start();
-        $game->tick();
-        $actual = ob_get_clean();
+        $actual = $game->tick();
 
         $this->assertSame(
             $expected,
@@ -61,7 +58,7 @@ class GameTest extends TestCase
      */
     public function shouldRenderNextState()
     {
-        $expected = "█░█\n██░\n░░█\n";
+        $expected = " █ \n  █\n██ \n";
 
         /**
          * @var \PHPUnit\Framework\MockObject\MockObject|Board $board
@@ -76,13 +73,9 @@ class GameTest extends TestCase
 
         $game = new Game($board);
 
-        ob_start();
         $game->tick();
-        ob_end_clean();
 
-        ob_start();
-        $game->tick();
-        $actual = ob_get_clean();
+        $actual = $game->tick();
 
         $this->assertSame(
             $expected,
