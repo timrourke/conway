@@ -21,6 +21,22 @@ composer install
 bin/conway run
 ```
 
+## Running the game with docker-compose
+
+1. Build the image
+```bash
+docker-compose build
+```
+2. Execute the `run` command
+```bash
+docker-compose run -T conway bin/conway run
+
+# It is also possible to specify command line arguments:
+docker-compose run -T conway bin/conway run --help
+
+# Press ctrl-c to exit.
+```
+
 ## For more info
 
 See the main application menu by running the command `bin/conway`.
