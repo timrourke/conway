@@ -21,4 +21,8 @@ bin/conway run
 
 ## For more info
 
-See the command's documentation by running the command `bin/conway --help`.
+See the main application menu by running the command `bin/conway`.
+
+See the application's documentation by running the command `bin/conway --help`.
+
+See the `run` command's documentation by running the command `bin/conway run --help`.
